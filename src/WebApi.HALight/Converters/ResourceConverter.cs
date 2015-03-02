@@ -85,7 +85,7 @@ namespace WebApi.HALight.Converters
                 var value = nonResourceProperty.GetValue(currentResource);
                 if (value != null && value.GetType().IsClass && value.GetType() != typeof(string))
                 {
-                    node.Add(ToCamelCase(nonResourceProperty.Name), JObject.FromObject(value));
+                    node.Add(ToCamelCase(nonResourceProperty.Name), JToken.FromObject(value));
                 }
                 else
                 {
