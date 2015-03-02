@@ -1,6 +1,7 @@
 ﻿namespace WebApi.HALight.UnitTests
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Newtonsoft.Json;
     using NUnit.Framework;
@@ -12,6 +13,7 @@
         public class UserResource : Resource
         {
             public string FirstName { get; set; }
+            public List<string> Values { get; set; }
         }
 
         public class MetaResource : Resource
@@ -30,7 +32,15 @@
         public void VerifyRoundtrip()
         {
             // Arrange
-            var userResource = new UserResource() { FirstName = "Hans" };
+            var userResource = new UserResource()
+            {
+                FirstName = "Hans",
+                Values = new List<string>()
+                {
+                    "One",
+                    "Two"
+                }
+            };
             var userCollectionResource = new UserCollectionResource()
             {
                 Meta = new MetaResource() { Meta = "MetaInfo" }, 
@@ -47,7 +57,6 @@
 
             // Act
             var serializedResources = JsonConvert.SerializeObject(userCollectionResource, new RelationsConverter(), new ResourceConverter());
-            Console.WriteLine(serializedResources);
             var deserializedResources = JsonConvert.DeserializeObject<UserCollectionResource>(serializedResources, new RelationsConverter(), new ResourceConverter());
             var serializedDeserializedResources = JsonConvert.SerializeObject(deserializedResources, new RelationsConverter(), new ResourceConverter());
 
