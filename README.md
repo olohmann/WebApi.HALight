@@ -4,6 +4,8 @@ A simple [HAL](http://stateless.co/hal_specification.html) formatter for ASP.NET
 
 A more in-depth usage sample should follow soon.
 
+**Note**: If you are looking for the **ASP.NET Core** version, move over to: [Lohmann.HALight](https://github.com/olohmann/Lohmann.HALight)
+
 ## Installation
 Install via NuGet:
 ```
